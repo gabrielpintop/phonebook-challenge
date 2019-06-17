@@ -45,6 +45,7 @@ public class GetContacts {
 			e.printStackTrace();
 		}
 		
+		// Search for all the contacts in the database
 		get("/api/getContacts", "application/json", (req, res) -> {
 			try {
 				List<Contact> contacts = contactDao.queryForAll();
@@ -53,7 +54,7 @@ public class GetContacts {
 				res.status(200);
 			} catch (SQLException e) {
 				res.status(404);
-				res.body("{\"errorMessage\":\"No fue posible obtener los beneficios\", \"error\":\"" + e.getMessage() + "\"}");
+				res.body("{\"errorMessage\":\"There was a problem getting the contacts\", \"error\":\"" + e.getMessage() + "\"}");
 			} 
 			return res.body();
 		});
