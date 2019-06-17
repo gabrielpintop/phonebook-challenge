@@ -1,7 +1,7 @@
 package services;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
@@ -54,7 +54,9 @@ public class GetContacts {
 				res.status(200);
 			} catch (SQLException e) {
 				res.status(404);
-				res.body("{\"errorMessage\":\"There was a problem getting the contacts\", \"error\":\"" + e.getMessage() + "\"}");
+				JsonObject jsonObject = new JsonObject();
+				jsonObject.addProperty("errorMessage", "There was a problem getting the contacts.");
+				jsonObject.addProperty("error", e.getMessage());
 			} 
 			return res.body();
 		});

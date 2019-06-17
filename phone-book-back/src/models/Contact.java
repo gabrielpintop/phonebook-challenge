@@ -15,7 +15,7 @@ public class Contact {
 	private String lastName;
 
 	@DatabaseField
-	private Integer phone;
+	private Long phone;
 
 	public int getId() {
 		return id;
@@ -41,11 +41,11 @@ public class Contact {
 		this.lastName = lastName;
 	}
 
-	public Integer getPhone() {
+	public Long getPhone() {
 		return phone;
 	}
 
-	public void setPhone(Integer phone) {
+	public void setPhone(Long phone) {
 		this.phone = phone;
 	}	
 }
