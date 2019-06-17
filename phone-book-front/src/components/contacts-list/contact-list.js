@@ -4,12 +4,12 @@ import ContactDetails from '../contact-details/contact-details';
 class ContactsList extends Component {
   render() {
     return (
-      <div class="pure-u-sm-1 pure-u-1-3">
-        <div class="box">
+      <div className="pure-u-sm-1 pure-u-1-3">
+        <div className="box">
           <h2>
-            <i class="fa fa-users" /> Contacts
+            <i className="fa fa-users" /> Contacts
           </h2>
-          <table class="pure-table">
+          <table className="pure-table">
             <thead>
               <tr>
                 <th>First Name</th>

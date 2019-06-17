@@ -4,8 +4,9 @@
 body {
   font-family: 'Roboto', sans-serif;
   background: url(assets/background.jpg) no-repeat;
-  background-size: inherit;
+  background-size: cover;
   background-position: 0px 70px;
+  background-attachment: fixed;
 }
 
 .container {
