@@ -37,7 +37,7 @@ public class RestConfiguration {
 	 * @return Port number
 	 */
 	public static int getHerokuAssignedPort() {
-		int port = 4567;
+		int port = 4568;
         ProcessBuilder processBuilder = new ProcessBuilder();
         if (processBuilder.environment().get("PORT") != null) {
             port = Integer.parseInt(processBuilder.environment().get("PORT"));

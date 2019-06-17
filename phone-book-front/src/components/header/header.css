@@ -1,0 +1,11 @@
+.logo {
+    width: 180px;
+    padding: 10px 15px 0px;
+}
+
+.header p {
+    position: absolute;
+    right: 60px;
+    top: 15px;
+    font: italic 14px 'Roboto';
+}
