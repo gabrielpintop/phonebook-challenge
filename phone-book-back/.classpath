@@ -5,5 +5,24 @@
 	<classpathentry kind="lib" path="lib/ormlite-core-5.1.jar"/>
 	<classpathentry kind="lib" path="lib/ormlite-jdbc-5.1.jar"/>
 	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.47.jar"/>
+	<classpathentry kind="lib" path="lib/spark-core-2.9.1.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-jdk14-1.7.25.jar"/>
+	<classpathentry kind="lib" path="lib/javax.servlet-api-3.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/jetty-client-9.4.12.v20180830.jar"/>
+	<classpathentry kind="lib" path="lib/jetty-http-9.4.12.v20180830.jar"/>
+	<classpathentry kind="lib" path="lib/jetty-io-9.4.12.v20180830.jar"/>
+	<classpathentry kind="lib" path="lib/jetty-security-9.4.12.v20180830.jar"/>
+	<classpathentry kind="lib" path="lib/jetty-server-9.4.12.v20180830.jar"/>
+	<classpathentry kind="lib" path="lib/jetty-servlet-9.4.12.v20180830.jar"/>
+	<classpathentry kind="lib" path="lib/jetty-util-9.4.12.v20180830.jar"/>
+	<classpathentry kind="lib" path="lib/jetty-webapp-9.4.12.v20180830.jar"/>
+	<classpathentry kind="lib" path="lib/jetty-xml-9.4.12.v20180830.jar"/>
+	<classpathentry kind="lib" path="lib/websocket-api-9.4.12.v20180830.jar"/>
+	<classpathentry kind="lib" path="lib/websocket-client-9.4.12.v20180830.jar"/>
+	<classpathentry kind="lib" path="lib/websocket-common-9.4.12.v20180830.jar"/>
+	<classpathentry kind="lib" path="lib/websocket-server-9.4.12.v20180830.jar"/>
+	<classpathentry kind="lib" path="lib/websocket-servlet-9.4.12.v20180830.jar"/>
+	<classpathentry kind="lib" path="lib/gson-2.6.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
