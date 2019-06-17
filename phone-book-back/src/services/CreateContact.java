@@ -71,9 +71,12 @@ public class CreateContact {
 					
 				} catch (SQLException e) {
 					jsonObject = new JsonObject();
-					jsonObject.addProperty("errorMessage", "There was an error saving the contact.");
-					jsonObject.addProperty("error", e.getMessage());
-					
+					String errorMessage = "There was an error saving the contact.";
+					if(e.getSQLState().equals("23000")) {
+						errorMessage += " The number is already saved.";
+					}
+					jsonObject.addProperty("errorMessage", errorMessage);
+					jsonObject.addProperty("error", e.getMessage());					
 				} catch (Exception e) {
 					jsonObject = new JsonObject();
 					jsonObject.addProperty("errorMessage", "The value of the attributes is not valid.");

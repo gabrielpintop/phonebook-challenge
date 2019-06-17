@@ -14,7 +14,7 @@ public class Contact {
 	@DatabaseField
 	private String lastName;
 
-	@DatabaseField
+	@DatabaseField(unique = true)
 	private Long phone;
 
 	public int getId() {
@@ -41,6 +41,7 @@ public class Contact {
 		this.lastName = lastName;
 	}
 
+	
 	public Long getPhone() {
 		return phone;
 	}
