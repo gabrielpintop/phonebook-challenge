@@ -8,7 +8,12 @@ function Header() {
       <div className="pure-u-1">
         <div className="header">
           <img className="logo" src={headerLogo} alt="Header logo" />
-          <p>v 2.0</p>
+          <p>
+            v 2.0 by{' '}
+            <a href="https://gabrielpinto.me" target="blank">
+              Gabriel Pinto
+            </a>
+          </p>
         </div>
       </div>
     </div>

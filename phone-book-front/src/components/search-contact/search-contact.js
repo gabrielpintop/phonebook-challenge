@@ -17,7 +17,7 @@ class SearchContact extends Component {
               type="submit"
               className="pure-button pure-input-1-2 pure-button-primary"
             >
-              <i className="fa fa-search" />
+              <i className="fas fa-search" />
               Search
             </button>
           </form>

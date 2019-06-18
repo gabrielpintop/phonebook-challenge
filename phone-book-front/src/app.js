@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Header from './components/header/header';
 import NewContact from './components/new-contact/new-contact';
 import SearchContact from './components/search-contact/search-contact';
@@ -23,15 +23,17 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
-        <ToastContainer />
+      <Fragment>
         <Header />
-        <div className="pure-g">
-          <NewContact loadData={this.loadData} />
-          <SearchContact />
-          <ContactsList load={this.state.load} />
+        <div className="container">
+          <ToastContainer />
+          <div className="pure-g main-functionalities-container">
+            <NewContact loadData={this.loadData} />
+            <SearchContact />
+            <ContactsList load={this.state.load} />
+          </div>
         </div>
-      </div>
+      </Fragment>
     );
   }
 }

@@ -3,9 +3,20 @@
     padding: 10px 15px 0px;
 }
 
+.header {
+    background-color: white;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
 .header p {
     position: absolute;
-    right: 60px;
+    right: 30px;
     top: 15px;
     font: italic 14px 'Roboto';
+}
+
+.header a {
+    color: black;
 }

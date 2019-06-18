@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import contactsApi from '../../api/contacts-api';
 import { toast } from 'react-toastify';
 import './new-contact.css';
+import ReactPhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/dist/style.css';
 
 class NewContact extends Component {
   constructor(props) {
@@ -12,17 +14,21 @@ class NewContact extends Component {
       phone: '',
       loading: false
     };
-    this.inputsMaxLength = 40;
+    this.inputsMaxLength = 30;
+    this.inputsMinLength = 3;
   }
 
   handleChange = e => {
+    console.log(this.state.phone.length);
+
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value.replace(/\s/g, '')
     });
   };
 
   handleSubmit = e => {
     e.preventDefault();
+
     this.setState({
       loading: true
     });
@@ -30,10 +36,13 @@ class NewContact extends Component {
       .createContact(
         this.state.firstName,
         this.state.lastName,
-        this.state.phone
+        this.state.phone.substring(1)
       )
       .then(data => {
-        toast.success('😃 ' + data);
+        toast.success('😃 ' + data, {
+          toastId: 'NewContactSuccess',
+          position: toast.POSITION.TOP_CENTER
+        });
         this.props.loadData();
         this.setState({
           firstName: '',
@@ -43,7 +52,10 @@ class NewContact extends Component {
         });
       })
       .catch(err => {
-        toast.error('😥 ' + err);
+        toast.error('😥 ' + err, {
+          toastId: 'NewContactError',
+          position: toast.POSITION.TOP_CENTER
+        });
         this.setState({
           loading: false
         });
@@ -69,6 +81,7 @@ class NewContact extends Component {
                 maxLength={this.inputsMaxLength}
                 value={this.state.firstName}
                 disabled={this.state.loading}
+                minLength={this.inputsMinLength}
                 required
               />
               <input
@@ -80,31 +93,39 @@ class NewContact extends Component {
                 maxLength={this.inputsMaxLength}
                 value={this.state.lastName}
                 disabled={this.state.loading}
+                minLength={this.inputsMinLength}
                 required
               />
-              <input
-                type="number"
-                className="pure-input-1-2 last-new-contact-input"
-                placeholder="Phone"
-                name="phone"
-                onChange={this.handleChange}
-                maxLength={this.inputsMaxLength}
+              <ReactPhoneInput
+                defaultCountry="co"
                 value={this.state.phone}
+                onChange={phone => this.setState({ phone })}
                 disabled={this.state.loading}
-                required
+                disableDropdown={this.state.loading}
+                disableCountryCode={this.state.loading}
+                inputClass="pure-input-1-2 last-new-contact-input"
+                inputExtraProps={{
+                  required: true
+                }}
               />
-              {this.state.loading ? (
-                <i className="fas fa-spin fa-spinner fa-2x text-purple" />
-              ) : (
-                <button
-                  type="submit"
-                  className="pure-button pure-input-1-2 pure-button-primary"
-                >
-                  <i className="fa fa-user-plus" />
-                  Add
-                </button>
-              )}
             </fieldset>
+            {this.state.loading ? (
+              <i className="fas fa-spin fa-spinner fa-2x text-purple" />
+            ) : (
+              <button
+                type="submit"
+                className="pure-button pure-input-1-2 pure-button-primary"
+                disabled={
+                  this.state.firstName === '' ||
+                  this.state.lastName === '' ||
+                  this.state.phone === '' ||
+                  this.state.phone.length < 8
+                }
+              >
+                <i className="fas fa-user-plus" />
+                Add
+              </button>
+            )}
           </form>
         </div>
       </div>

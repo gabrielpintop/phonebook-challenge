@@ -1,4 +1,24 @@
 .last-new-contact-input {
     border-bottom-right-radius: 0.25rem !important;
     border-bottom-left-radius: 0.25rem !important;
+    border-top-right-radius: 0rem !important;
+    border-top-left-radius: 0rem !important;
+}
+
+.flag-dropdown {
+    top: -1px !important;
+    border: 0 !important;
+    background-color: #eee !important;
+}
+
+.selected-flag {
+    top: 0px !important;
+    height: 97% !important;
+    background-color: white;
+    border: solid #cacaca;
+    border-top-left-radius: 0rem !important;
+}
+
+.last-new-contact-input {
+    top: -1px !important;
 }

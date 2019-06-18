@@ -5,7 +5,6 @@ body {
   font-family: 'Roboto', sans-serif;
   background: url(assets/background.jpg) no-repeat;
   background-size: cover;
-  background-position: 0px 70px;
   /* Attaches images to viewport */
   background-attachment: fixed;
 }
@@ -66,7 +65,10 @@ body {
   background-color: #fff;
 }
 
-.mx-auto {
-  margin-right: auto !important;
-  margin-right: auto !important;
+.fas {
+  padding-right: 5px;
+}
+
+.main-functionalities-container {
+  margin-top: 22px !important;
 }
