@@ -1,5 +1,14 @@
 const axios = require('axios');
 
+function handleErrors(error, reject) {
+  console.log(error);
+  if (error.response && error.response.data && error.response.data) {
+    return reject(error.response.data.errorMessage);
+  } else {
+    return reject('There was a problem with the request.');
+  }
+}
+
 function getContacts() {
   return new Promise((resolve, reject) => {
     axios
@@ -8,8 +17,7 @@ function getContacts() {
         resolve(res.data);
       })
       .catch(err => {
-        console.log(err.response.data.error);
-        reject(err.response.data.errorMessage);
+        handleErrors(err, reject);
       });
   });
 }
@@ -26,13 +34,26 @@ function createContact(firstName, lastName, phone) {
         resolve(res.data.message);
       })
       .catch(err => {
-        console.log(err.response.data.error);
-        reject(err.response.data.errorMessage);
+        handleErrors(err, reject);
+      });
+  });
+}
+
+function getContactsByQuery(query) {
+  return new Promise((resolve, reject) => {
+    axios
+      .get('http://localhost:4567/api/getContactsByQuery/' + query)
+      .then(res => {
+        resolve(res.data);
+      })
+      .catch(err => {
+        handleErrors(err, reject);
       });
   });
 }
 
 module.exports = {
   getContacts,
+  getContactsByQuery,
   createContact
 };

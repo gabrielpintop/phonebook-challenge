@@ -1,0 +1,12 @@
+.text-phone-number {
+    color: gray !important;
+}
+
+.text-phone-number-icon {
+    text-decoration: none !important;
+    color: #00B0A5 !important;
+}
+
+.margin-top-search-list {
+    margin-top: 1.6rem;
+}

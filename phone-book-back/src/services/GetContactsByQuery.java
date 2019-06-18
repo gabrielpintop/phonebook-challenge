@@ -46,15 +46,15 @@ public class GetContactsByQuery {
 					if(!connectionSource.isOpen("")) {
 						createConnection();
 					}
+					Long limit = (long) 5;
 					String query = "%" + req.params(":query") + "%";
-					QueryBuilder<Contact, String> queryBuilder = contactDao.queryBuilder();
+					QueryBuilder<Contact, String> queryBuilder = contactDao.queryBuilder().limit(limit);
 					Where<Contact, String> where = queryBuilder.where();			
 					where.like("lastName", query);
 					where.or();
 					where.like("firstName", query);
 					where.or();
 					where.like("phone", "'" + query + "'");
-					System.out.println(where.getStatement());
 					List<Contact> contacts = queryBuilder.query();
 					String json = new Gson().toJson(contacts);
 					res.body(json);

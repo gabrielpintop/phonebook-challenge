@@ -19,8 +19,6 @@ class NewContact extends Component {
   }
 
   handleChange = e => {
-    console.log(this.state.phone.length);
-
     this.setState({
       [e.target.name]: e.target.value.replace(/\s/g, '')
     });
