@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ContactDetails from '../contact-details/contact-details';
 import contactsApi from '../../api/contacts-api';
+import utilities from '../../global-functions/utilities';
 import './contact-list.css';
-import { toast } from 'react-toastify';
 
 class ContactsList extends Component {
   constructor(props) {
@@ -32,21 +32,7 @@ class ContactsList extends Component {
       .getContacts()
       .then(data => {
         // Sort the data by first name and lastName if needed
-        data = data.sort((a, b) => {
-          if (a.firstName > b.firstName) {
-            return 1;
-          }
-          if (a.firstName < b.firstName) {
-            return -1;
-          }
-          if (a.lastName > b.lastName) {
-            return 1;
-          }
-          if (a.lastName < b.lastName) {
-            return -1;
-          }
-          return 0;
-        });
+        data = utilities.sortByFirstAndLastName(data);
 
         this.setState({
           contacts: data,
@@ -71,29 +57,19 @@ class ContactsList extends Component {
           {this.state.loading ? (
             <i className="fas fa-spin fa-spinner fa-2x text-purple" />
           ) : this.state.contacts.length > 0 ? (
-            <div className="table-responsive contacts-table">
-              <table className="pure-table-striped pure-table-horizontal pure-table">
-                <thead>
-                  <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Phone</th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  {this.state.contacts.map(contact => {
-                    return (
-                      <ContactDetails
-                        key={contact.id}
-                        firstName={contact.firstName}
-                        lastName={contact.lastName}
-                        phone={contact.phone}
-                      />
-                    );
-                  })}
-                </tbody>
-              </table>
+            <div className="">
+              <ul className="list-group list-group-flush margin-top-search-list list-responsive contacts-list">
+                {this.state.contacts.map(contact => {
+                  return (
+                    <ContactDetails
+                      key={contact.id}
+                      firstName={contact.firstName}
+                      lastName={contact.lastName}
+                      phone={contact.phone}
+                    />
+                  );
+                })}
+              </ul>
             </div>
           ) : (
             <h4>There are no contacts</h4>

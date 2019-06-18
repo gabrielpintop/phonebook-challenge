@@ -8,6 +8,7 @@
     "react-dom": "^16.8.6",
     "react-phone-input-2": "^2.9.4",
     "react-phone-number-input": "^2.3.17",
+    "react-responsive-modal": "^4.0.1",
     "react-scripts": "3.0.1",
     "react-toastify": "^5.2.1"
   },

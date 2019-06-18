@@ -101,7 +101,7 @@ class NewContact extends Component {
                 disabled={this.state.loading}
                 disableDropdown={this.state.loading}
                 disableCountryCode={this.state.loading}
-                inputClass="pure-input-1-2 last-new-contact-input"
+                inputclassName="pure-input-1-2 last-new-contact-input"
                 inputExtraProps={{
                   required: true
                 }}

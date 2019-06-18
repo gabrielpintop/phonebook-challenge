@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import contactsApi from '../../api/contacts-api';
 import { toast } from 'react-toastify';
 import './search-contact.css';
+import ContactDetails from '../contact-details/contact-details';
+import utilities from '../../global-functions/utilities';
 
 class SearchContact extends Component {
   constructor(props) {
@@ -42,6 +44,7 @@ class SearchContact extends Component {
     contactsApi
       .getContactsByQuery(this.state.searchFilter)
       .then(data => {
+        data = utilities.sortByFirstAndLastName(data);
         this.setState({
           contacts: data,
           searched: true,
@@ -109,33 +112,15 @@ class SearchContact extends Component {
               <div>
                 <br />
                 <hr />
-                <ul class="list-group list-group-flush margin-top-search-list">
+                <ul className="list-group list-group-flush margin-top-search-list">
                   {this.state.contacts.map(contact => {
                     return (
-                      <li
-                        class="list-group-item text-left"
-                        key={contact.id + 'searched'}
-                      >
-                        <div className="pure-g">
-                          <div className="pure-u-4-5">
-                            <h4 className="margin-bottom-0 margin-top-0">
-                              {contact.firstName} {contact.lastName}
-                            </h4>
-                            <h5 className="margin-top-5 margin-bottom-0 text-phone-number">
-                              {contact.phone}
-                            </h5>
-                          </div>
-                          <div className="pure-u-1-5 text-right my-auto">
-                            <a
-                              className="text-phone-number-icon margin-bottom-0"
-                              href={'tel:+' + contact.phone}
-                            >
-                              <i class="fas fa-phone fa-flip-horizontal fa-lg fas-padding-0 margin-bottom-0" />
-                              &nbsp;
-                            </a>
-                          </div>
-                        </div>
-                      </li>
+                      <ContactDetails
+                        key={contact.id + 'search'}
+                        firstName={contact.firstName}
+                        lastName={contact.lastName}
+                        phone={contact.phone}
+                      />
                     );
                   })}
                 </ul>
