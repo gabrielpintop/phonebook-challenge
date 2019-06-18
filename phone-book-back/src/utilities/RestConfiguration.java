@@ -36,13 +36,12 @@ public class RestConfiguration {
 	 * Gets the port in which the main app will run
 	 * @return Port number
 	 */
-	public static int getHerokuAssignedPort() {
-		int port = 4568;
+	public static int getHerokuAssignedPort(int portNumber) {
         ProcessBuilder processBuilder = new ProcessBuilder();
         if (processBuilder.environment().get("PORT") != null) {
-            port = Integer.parseInt(processBuilder.environment().get("PORT"));
+            return Integer.parseInt(processBuilder.environment().get("PORT"));
         }
-        System.out.println("Running in port: " + port);
-        return port;
+        System.out.println("Running in port: " + portNumber);
+        return portNumber;
     }
 }

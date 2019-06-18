@@ -31,7 +31,7 @@ public class CreateContact {
 		connectionSource = DatabaseConfiguration.initializeDB();
 		
 		// Defines the port to use
-		port(RestConfiguration.getHerokuAssignedPort());
+		port(RestConfiguration.getHerokuAssignedPort(4569));
 		
 		// Initialize the cors
 		RestConfiguration.initializeCors();
