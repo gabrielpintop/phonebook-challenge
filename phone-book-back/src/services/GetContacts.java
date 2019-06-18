@@ -40,7 +40,7 @@ public class GetContacts {
 			// Search for all the contacts in the database
 			get("/api/getContacts", "application/json", (req, res) -> {
 				try {
-					if(!connectionSource.isOpen("")) {
+					if(!connectionSource.isOpen("CONTACT")) {
 						createConnection();
 					}
 					List<Contact> contacts = contactDao.queryForAll();

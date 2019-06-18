@@ -39,7 +39,7 @@ public class CreateContact {
 			
 			// Creates a new contact in the database
 			post("/api/createContact", "application/json", (req, res) -> {
-				if(!connectionSource.isOpen("")) {
+				if(!connectionSource.isOpen("CONTACT")) {
 					createConnection();
 				}
 				

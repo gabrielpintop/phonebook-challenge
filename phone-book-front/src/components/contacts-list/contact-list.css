@@ -22,7 +22,7 @@ table {
 }
 
 .contacts-table::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;
     background-color: rgb(235, 233, 233) !important;
 }
 
@@ -38,7 +38,7 @@ table {
 }
 
 .table-responsive {
-    max-height: 500px !important;
+    max-height: 524px !important;
 }
 
 @media (max-width: 575.98px) {

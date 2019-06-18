@@ -31,13 +31,29 @@ class ContactsList extends Component {
     contactsApi
       .getContacts()
       .then(data => {
+        // Sort the data by first name and lastName if needed
+        data = data.sort((a, b) => {
+          if (a.firstName > b.firstName) {
+            return 1;
+          }
+          if (a.firstName < b.firstName) {
+            return -1;
+          }
+          if (a.lastName > b.lastName) {
+            return 1;
+          }
+          if (a.lastName < b.lastName) {
+            return -1;
+          }
+          return 0;
+        });
+
         this.setState({
           contacts: data,
           loading: false
         });
       })
       .catch(err => {
-        toast.error(err);
         this.setState({
           loading: false
         });
@@ -80,7 +96,7 @@ class ContactsList extends Component {
               </table>
             </div>
           ) : (
-            'There are no contacts'
+            <h4>There are no contacts</h4>
           )}
         </div>
       </div>

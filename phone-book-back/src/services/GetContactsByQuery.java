@@ -81,9 +81,10 @@ public class GetContactsByQuery {
 		System.out.println("Creats");
 		// Configures the database connection
 		connectionSource = DatabaseConfiguration.initializeDB();
-
+		System.out.println("Creats2");
 		// Creates a new DAO
 		contactDao = DaoManager.createDao(connectionSource, Contact.class);
+		System.out.println("Creats3");
 	}
 
 }
