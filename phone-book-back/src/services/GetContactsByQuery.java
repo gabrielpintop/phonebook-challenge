@@ -30,7 +30,7 @@ public class GetContactsByQuery {
 	public static void main(String[] args) {
 
 		// Defines the port to use
-		port(RestConfiguration.getHerokuAssignedPort(4570));
+		port(RestConfiguration.getHerokuAssignedPort(4567));
 
 		// Initialize the cors
 		RestConfiguration.initializeCors();
@@ -42,14 +42,19 @@ public class GetContactsByQuery {
 
 			// Search for all the contacts in the database
 			get("/api/getContactsByQuery/:query", "application/json", (req, res) -> {
-				if(!connectionSource.isOpen("")) {
-					createConnection();
-				}
 				try {
+					if(!connectionSource.isOpen("")) {
+						createConnection();
+					}
 					String query = "%" + req.params(":query") + "%";
 					QueryBuilder<Contact, String> queryBuilder = contactDao.queryBuilder();
 					Where<Contact, String> where = queryBuilder.where();			
-					where.like("firstName", query).or().like("lastName", query).or().like("phone", query);
+					where.like("lastName", query);
+					where.or();
+					where.like("firstName", query);
+					where.or();
+					where.like("phone", "'" + query + "'");
+					System.out.println(where.getStatement());
 					List<Contact> contacts = queryBuilder.query();
 					String json = new Gson().toJson(contacts);
 					res.body(json);
@@ -59,7 +64,7 @@ public class GetContactsByQuery {
 					JsonObject jsonObject = new JsonObject();
 					jsonObject.addProperty("errorMessage", "There was a problem getting the contacts by query.");
 					jsonObject.addProperty("error", e.getMessage());
-				} 
+				}
 				return res.body();
 			});
 

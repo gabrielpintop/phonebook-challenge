@@ -39,10 +39,10 @@ public class GetContacts {
 
 			// Search for all the contacts in the database
 			get("/api/getContacts", "application/json", (req, res) -> {
-				if(!connectionSource.isOpen("")) {
-					createConnection();
-				}
 				try {
+					if(!connectionSource.isOpen("")) {
+						createConnection();
+					}
 					List<Contact> contacts = contactDao.queryForAll();
 					String json = new Gson().toJson(contacts);
 					res.body(json);
