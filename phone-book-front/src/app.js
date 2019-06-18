@@ -6,19 +6,61 @@ import './app.css';
 import ContactsList from './components/contacts-list/contact-list';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import ContactModal from './components/contact-modal/contact-modal';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      load: false
+      load: false,
+      refresh: false,
+      open: false,
+      contact: null
     };
   }
 
   loadData = () => {
+    this.setState(
+      {
+        load: true
+      },
+      () => {
+        this.setState({
+          load: false
+        });
+      }
+    );
+  };
+
+  openModal = contact => {
     this.setState({
-      load: true
+      contact: contact,
+      open: true
     });
+  };
+
+  closeModal = () => {
+    this.setState({
+      open: false,
+      contact: null
+    });
+  };
+
+  deletedItem = () => {
+    this.setState(
+      {
+        open: false,
+        contact: null,
+        load: true,
+        refresh: true
+      },
+      () => {
+        this.setState({
+          load: false,
+          refresh: false
+        });
+      }
+    );
   };
 
   render() {
@@ -29,10 +71,19 @@ class App extends Component {
           <ToastContainer />
           <div className="pure-g main-functionalities-container margin-bottom-30">
             <NewContact loadData={this.loadData} />
-            <SearchContact />
-            <ContactsList load={this.state.load} />
+            <SearchContact
+              openModal={this.openModal}
+              refresh={this.state.refresh}
+            />
+            <ContactsList load={this.state.load} openModal={this.openModal} />
           </div>
         </div>
+        <ContactModal
+          open={this.state.open}
+          contact={this.state.contact}
+          closeModal={this.closeModal}
+          deletedItem={this.deletedItem}
+        />
       </Fragment>
     );
   }

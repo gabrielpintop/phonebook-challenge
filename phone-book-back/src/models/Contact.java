@@ -13,7 +13,7 @@ public class Contact {
 	
 	@DatabaseField
 	private String lastName;
-
+	
 	@DatabaseField(unique = true)
 	private Long phone;
 

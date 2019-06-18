@@ -11,7 +11,7 @@ class NewContact extends Component {
     this.state = {
       firstName: '',
       lastName: '',
-      phone: '',
+      phone: '+57',
       loading: false
     };
     this.inputsMaxLength = 25;
@@ -45,7 +45,7 @@ class NewContact extends Component {
         this.setState({
           firstName: '',
           lastName: '',
-          phone: '',
+          phone: '+57',
           loading: false
         });
       })
@@ -95,13 +95,13 @@ class NewContact extends Component {
                 required
               />
               <ReactPhoneInput
-                defaultCountry="co"
+                placeholder="+573106257871"
                 value={this.state.phone}
                 onChange={phone => this.setState({ phone })}
                 disabled={this.state.loading}
                 disableDropdown={this.state.loading}
                 disableCountryCode={this.state.loading}
-                inputclassName="pure-input-1-2 last-new-contact-input"
+                inputclassName="pure-input-1-2"
                 inputExtraProps={{
                   required: true
                 }}

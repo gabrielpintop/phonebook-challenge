@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 function handleErrors(error, reject) {
-  console.log(error);
+  console.log(error.response);
   if (
     error.response &&
     error.response.data &&
@@ -56,8 +56,22 @@ function getContactsByQuery(query) {
   });
 }
 
+function deleteContact(id) {
+  return new Promise((resolve, reject) => {
+    axios
+      .delete('http://localhost:4570/api/deleteContact/' + id)
+      .then(res => {
+        resolve(res.data.message);
+      })
+      .catch(err => {
+        handleErrors(err, reject);
+      });
+  });
+}
+
 module.exports = {
   getContacts,
   getContactsByQuery,
-  createContact
+  createContact,
+  deleteContact
 };

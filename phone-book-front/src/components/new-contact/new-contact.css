@@ -1,8 +1,9 @@
-.last-new-contact-input {
+.form-control {
     border-bottom-right-radius: 0.25rem !important;
     border-bottom-left-radius: 0.25rem !important;
     border-top-right-radius: 0rem !important;
     border-top-left-radius: 0rem !important;
+    top: -1px !important;
 }
 
 .flag-dropdown {
@@ -17,8 +18,4 @@
     background-color: white;
     border: solid #cacaca;
     border-top-left-radius: 0rem !important;
-}
-
-.last-new-contact-input {
-    top: -1px !important;
 }

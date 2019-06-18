@@ -52,6 +52,7 @@ public class GetContacts {
 					JsonObject jsonObject = new JsonObject();
 					jsonObject.addProperty("errorMessage", "There was a problem getting the contacts.");
 					jsonObject.addProperty("error", e.getMessage());
+					res.body(jsonObject.toString());
 				} 
 				return res.body();
 			});

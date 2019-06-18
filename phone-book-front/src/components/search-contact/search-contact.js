@@ -16,6 +16,16 @@ class SearchContact extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.refresh && this.state.searchFilter !== '') {
+      this.setState({
+        loading: true,
+        contacts: []
+      });
+      this.searchContacts();
+    }
+  }
+
   handleFilterChange = e => {
     this.setState(
       {
@@ -33,14 +43,7 @@ class SearchContact extends Component {
     );
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-
-    this.setState({
-      loading: true,
-      searched: false,
-      contacts: []
-    });
+  searchContacts = () => {
     contactsApi
       .getContactsByQuery(this.state.searchFilter)
       .then(data => {
@@ -61,6 +64,17 @@ class SearchContact extends Component {
           searched: true
         });
       });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    this.setState({
+      loading: true,
+      searched: false,
+      contacts: []
+    });
+    this.searchContacts();
   };
 
   cleanData = () => {
@@ -117,9 +131,8 @@ class SearchContact extends Component {
                     return (
                       <ContactDetails
                         key={contact.id + 'search'}
-                        firstName={contact.firstName}
-                        lastName={contact.lastName}
-                        phone={contact.phone}
+                        contact={contact}
+                        openModal={this.props.openModal}
                       />
                     );
                   })}

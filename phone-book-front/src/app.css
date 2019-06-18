@@ -115,6 +115,10 @@ body {
   text-align: left !important;
 }
 
+.text-center {
+  text-align: center !important;
+}
+
 .text-right {
   text-align: right !important;
 }
@@ -182,6 +186,11 @@ body {
   background: #345AD9 !important;
 }
 
+.pure-button-danger {
+  background: #A92B00;
+  color: white;
+}
+
 .phone-icon-color {
   color: #00B0A5 !important;
 }
@@ -190,4 +199,8 @@ body {
 .my-auto {
   margin-top: auto !important;
   margin-bottom: auto !important;
+}
+
+.pointer {
+  cursor: pointer;
 }

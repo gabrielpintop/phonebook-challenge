@@ -11,7 +11,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import models.Contact;
 
-import static spark.Spark.get;
+import static spark.Spark.delete;
 import static spark.Spark.port;
 
 import java.sql.SQLException;
@@ -21,71 +21,66 @@ import utilities.DatabaseConfiguration;
 import utilities.RestConfiguration;
 
 
-public class GetContactsByQuery {
+public class DeleteContact {
 
 	private static ConnectionSource connectionSource;
 
 	private static Dao<Contact, String> contactDao;
-	
+
 	private static boolean open = true;
 
 	public static void main(String[] args) {
 
 		// Defines the port to use
-		port(RestConfiguration.getHerokuAssignedPort(4567));
+		port(RestConfiguration.getHerokuAssignedPort(4570));
 
 		// Initialize the cors
 		RestConfiguration.initializeCors();
-
 		try {
-			createConnection();
-			// Creates the table CONTACT if it doesn't exist
-			TableUtils.createTableIfNotExists(connectionSource, Contact.class);
+			if(!connectionSource.isOpen("CONTACT")) {
+				createConnection();
+			}
 
-			// Search for all the contacts in the database
-			get("/api/getContactsByQuery/:query", "application/json", (req, res) -> {
+			// Deletes a contact by id
+			delete("/api/deleteContact/:id", "application/json", (req, res) -> {
+				createConnection();
+				JsonObject jsonObject = new JsonObject();
 				try {
 					open = connectionSource.isOpen("CONTACT");
 					System.out.println(open);
 					if(!open) {
 						createConnection();
 					}
-					Long limit = (long) 5;
-					String query = "%" + req.params(":query") + "%";
-					QueryBuilder<Contact, String> queryBuilder = contactDao.queryBuilder().limit(limit);
-					Where<Contact, String> where = queryBuilder.where();			
-					where.like("lastName", query);
-					where.or();
-					where.like("firstName", query);
-					where.or();
-					where.like("phone", "'" + query + "'");
-					List<Contact> contacts = queryBuilder.query();
-					String json = new Gson().toJson(contacts);
-					res.body(json);
-					res.status(200);
+					String id = req.params(":id");
+					int deleted = contactDao.deleteById(id);
+					if(deleted == 1) {
+						jsonObject.addProperty("message", "The contact was deleted.");
+						res.status(200);
+					} else {
+						res.status(404);
+						jsonObject.addProperty("errorMessage", "The contact doesn't exist");
+						jsonObject.addProperty("error", "Not existing contact with id: " + id);
+					}
 				} catch (SQLException e) {
 					res.status(404);
-					JsonObject jsonObject = new JsonObject();
-					jsonObject.addProperty("errorMessage", "There was a problem getting the contacts by query.");
+					jsonObject.addProperty("errorMessage", "There was a problem deleting the contact.");
 					jsonObject.addProperty("error", e.getMessage());
-					res.body(jsonObject.toString());
 				}
+				res.body(jsonObject.toString());
+
 				return res.body();
 			});
-
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	private static void createConnection() throws SQLException {
-		System.out.println("Creats");
 		// Configures the database connection
 		connectionSource = DatabaseConfiguration.initializeDB();
-		System.out.println("Creats2");
 		// Creates a new DAO
 		contactDao = DaoManager.createDao(connectionSource, Contact.class);
-		System.out.println("Creats3");
 	}
 
 }

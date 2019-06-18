@@ -63,9 +63,8 @@ class ContactsList extends Component {
                   return (
                     <ContactDetails
                       key={contact.id}
-                      firstName={contact.firstName}
-                      lastName={contact.lastName}
-                      phone={contact.phone}
+                      contact={contact}
+                      openModal={this.props.openModal}
                     />
                   );
                 })}
