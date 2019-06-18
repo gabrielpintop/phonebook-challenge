@@ -27,7 +27,7 @@ class App extends Component {
         <Header />
         <div className="container">
           <ToastContainer />
-          <div className="pure-g main-functionalities-container">
+          <div className="pure-g main-functionalities-container margin-bottom-30">
             <NewContact loadData={this.loadData} />
             <SearchContact />
             <ContactsList load={this.state.load} />

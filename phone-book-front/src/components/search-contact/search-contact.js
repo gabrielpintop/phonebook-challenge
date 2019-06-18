@@ -87,7 +87,7 @@ class SearchContact extends Component {
                 className="pure-input-1-2"
                 name="searchFilter"
                 minLength="3"
-                maxLength="30"
+                maxLength="25"
                 disabled={this.state.loading}
               />
             </fieldset>

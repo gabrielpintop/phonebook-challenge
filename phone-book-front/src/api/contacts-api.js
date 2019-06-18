@@ -2,7 +2,11 @@ const axios = require('axios');
 
 function handleErrors(error, reject) {
   console.log(error);
-  if (error.response && error.response.data && error.response.data) {
+  if (
+    error.response &&
+    error.response.data &&
+    error.response.data.errorMessage
+  ) {
     return reject(error.response.data.errorMessage);
   } else {
     return reject('There was a problem with the request.');

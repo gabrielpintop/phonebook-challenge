@@ -14,7 +14,7 @@ class NewContact extends Component {
       phone: '',
       loading: false
     };
-    this.inputsMaxLength = 30;
+    this.inputsMaxLength = 25;
     this.inputsMinLength = 3;
   }
 

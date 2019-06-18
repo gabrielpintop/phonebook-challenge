@@ -17,6 +17,13 @@
     font: italic 14px 'Roboto';
 }
 
+@media(max-width: 370px) {
+    .header p {
+        right: 30px;
+        top: 35px;
+    }
+}
+
 .header a {
     color: black;
 }

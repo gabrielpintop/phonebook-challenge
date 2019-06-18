@@ -55,28 +55,30 @@ class ContactsList extends Component {
           {this.state.loading ? (
             <i className="fas fa-spin fa-spinner fa-2x text-purple" />
           ) : this.state.contacts.length > 0 ? (
-            <table className="pure-table">
-              <thead>
-                <tr>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Phone</th>
-                </tr>
-              </thead>
+            <div className="table-responsive contacts-table">
+              <table className="pure-table-striped pure-table-horizontal pure-table">
+                <thead>
+                  <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone</th>
+                  </tr>
+                </thead>
 
-              <tbody>
-                {this.state.contacts.map(contact => {
-                  return (
-                    <ContactDetails
-                      key={contact.id}
-                      firstName={contact.firstName}
-                      lastName={contact.lastName}
-                      phone={contact.phone}
-                    />
-                  );
-                })}
-              </tbody>
-            </table>
+                <tbody>
+                  {this.state.contacts.map(contact => {
+                    return (
+                      <ContactDetails
+                        key={contact.id}
+                        firstName={contact.firstName}
+                        lastName={contact.lastName}
+                        phone={contact.phone}
+                      />
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
           ) : (
             'There are no contacts'
           )}

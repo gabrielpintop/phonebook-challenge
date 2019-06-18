@@ -26,6 +26,8 @@ public class GetContactsByQuery {
 	private static ConnectionSource connectionSource;
 
 	private static Dao<Contact, String> contactDao;
+	
+	private static boolean open = true;
 
 	public static void main(String[] args) {
 
@@ -43,7 +45,9 @@ public class GetContactsByQuery {
 			// Search for all the contacts in the database
 			get("/api/getContactsByQuery/:query", "application/json", (req, res) -> {
 				try {
-					if(!connectionSource.isOpen("")) {
+					open = connectionSource.isOpen("CONTACT");
+					System.out.println(open);
+					if(!open) {
 						createConnection();
 					}
 					Long limit = (long) 5;
@@ -74,6 +78,7 @@ public class GetContactsByQuery {
 	}
 
 	private static void createConnection() throws SQLException {
+		System.out.println("Creats");
 		// Configures the database connection
 		connectionSource = DatabaseConfiguration.initializeDB();
 
