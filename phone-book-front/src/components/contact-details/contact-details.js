@@ -25,7 +25,7 @@ class ContactDetails extends Component {
           <div className="pure-u-1-5 text-right my-auto">
             <a
               className="text-phone-number-icon margin-bottom-0"
-              href={'tel:+' + this.props.phone}
+              href={'tel:+' + this.props.contact.phone}
             >
               <i className="fas fa-phone fa-flip-horizontal fa-lg fas-padding-0 margin-bottom-0" />
               &nbsp;
