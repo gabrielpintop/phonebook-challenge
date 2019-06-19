@@ -5,6 +5,7 @@ import './search-contact.css';
 import ContactDetails from '../contact-details/contact-details';
 import utilities from '../../global-functions/utilities';
 
+// Allows the search of contacts based on some criteria
 class SearchContact extends Component {
   constructor(props) {
     super(props);
@@ -16,16 +17,18 @@ class SearchContact extends Component {
     };
   }
 
+  // Used for cleaning the search when needed
   componentWillReceiveProps(nextProps) {
-    if (nextProps.refresh && this.state.searchFilter !== '') {
+    if (nextProps.refresh) {
       this.setState({
-        loading: true,
+        searched: false,
+        loading: false,
         contacts: []
       });
-      this.searchContacts();
     }
   }
 
+  // Handles the change in the search filter. No whitespaces are allowed
   handleFilterChange = e => {
     this.setState(
       {
@@ -43,6 +46,7 @@ class SearchContact extends Component {
     );
   };
 
+  // Search the contacts based on the filter
   searchContacts = () => {
     contactsApi
       .getContactsByQuery(this.state.searchFilter)
@@ -61,11 +65,12 @@ class SearchContact extends Component {
         });
         this.setState({
           loading: false,
-          searched: true
+          searched: false
         });
       });
   };
 
+  // Handles the search button event
   handleSubmit = e => {
     e.preventDefault();
 
@@ -77,6 +82,7 @@ class SearchContact extends Component {
     this.searchContacts();
   };
 
+  // Clean the current results of the query
   cleanData = () => {
     this.setState({
       data: [],

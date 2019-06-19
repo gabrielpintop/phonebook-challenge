@@ -5,6 +5,7 @@ import './new-contact.css';
 import ReactPhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/dist/style.css';
 
+// Allows the creation of a new contact
 class NewContact extends Component {
   constructor(props) {
     super(props);
@@ -18,12 +19,14 @@ class NewContact extends Component {
     this.inputsMinLength = 3;
   }
 
+  // No whitespaces are allowed in the fields
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value.replace(/\s/g, '')
     });
   };
 
+  // Handles the creation of a new contact
   handleSubmit = e => {
     e.preventDefault();
 

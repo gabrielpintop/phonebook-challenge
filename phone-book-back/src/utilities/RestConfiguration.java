@@ -3,8 +3,13 @@ package utilities;
 import static spark.Spark.before;
 import static spark.Spark.options;
 
+/**
+ * Basic configurations for spark
+ * @author Gabriel Pinto
+ *
+ */
 public class RestConfiguration {
-	
+
 	/**
 	 * Initialize the CORS of the app for allowing external requests
 	 */
@@ -31,17 +36,17 @@ public class RestConfiguration {
 
 		before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
 	}
-	
+
 	/**
 	 * Gets the port in which the main app will run
 	 * @return Port number
 	 */
 	public static int getHerokuAssignedPort(int portNumber) {
-        ProcessBuilder processBuilder = new ProcessBuilder();
-        if (processBuilder.environment().get("PORT") != null) {
-            return Integer.parseInt(processBuilder.environment().get("PORT"));
-        }
-        System.out.println("Running in port: " + portNumber);
-        return portNumber;
-    }
+		ProcessBuilder processBuilder = new ProcessBuilder();
+		if (processBuilder.environment().get("PORT") != null) {
+			return Integer.parseInt(processBuilder.environment().get("PORT"));
+		}
+		System.out.println("Running in port: " + portNumber);
+		return portNumber;
+	}
 }

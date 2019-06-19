@@ -19,6 +19,7 @@ class App extends Component {
     };
   }
 
+  // Function that makes that the existing contacts be loaded again
   loadData = () => {
     this.setState(
       {
@@ -32,6 +33,7 @@ class App extends Component {
     );
   };
 
+  // Opens the details modals
   openModal = contact => {
     this.setState({
       contact: contact,
@@ -39,6 +41,7 @@ class App extends Component {
     });
   };
 
+  // Closes the modal
   closeModal = () => {
     this.setState({
       open: false,
@@ -46,6 +49,7 @@ class App extends Component {
     });
   };
 
+  // Indicates that a contact was deleted. So existing contacts are loaded and query results are cleaned
   deletedItem = () => {
     this.setState(
       {

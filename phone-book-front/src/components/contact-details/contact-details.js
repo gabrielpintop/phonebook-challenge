@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './contact-details.css';
 
+// Shows the info of a contact
 class ContactDetails extends Component {
   openContactModal = () => {
     this.props.openModal(this.props.contact);

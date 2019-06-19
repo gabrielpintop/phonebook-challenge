@@ -4,18 +4,20 @@ import contactsApi from '../../api/contacts-api';
 import './contact-modal.css';
 import { toast } from 'react-toastify';
 
+// Modal that shows the info of a contact and allows to delete that contact
 class ContactModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: false
     };
+
+    this.modalClass = {
+      modal: 'contact-modal'
+    };
   }
 
-  modalClass = {
-    modal: 'contact-modal'
-  };
-
+  // Function to delete the current contact
   deleteContact = () => {
     this.setState({
       loading: true
@@ -43,6 +45,7 @@ class ContactModal extends Component {
       });
   };
 
+  // Function to close de the modal
   closeCurrentModal = () => {
     if (!this.state.loading) {
       this.props.closeModal();

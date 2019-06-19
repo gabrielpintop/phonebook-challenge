@@ -1,0 +1,1 @@
+ant clean compile jar -DserviceName=GetContacts && ant clean compile jar -DserviceName=CreateContact && ant clean compile jar -DserviceName=DeleteContact && ant clean compile jar -DserviceName=GetContactsByQuery

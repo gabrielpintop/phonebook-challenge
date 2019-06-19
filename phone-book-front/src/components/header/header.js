@@ -2,6 +2,7 @@ import React from 'react';
 import headerLogo from '../../assets/phonebook.png';
 import './header.css';
 
+// Header of the app with the PhoneBook logo
 function Header() {
   return (
     <div className="pure-g">

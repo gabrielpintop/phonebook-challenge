@@ -1,3 +1,4 @@
+// Function that sorts the contacts by first name and last name
 function sortByFirstAndLastName(array) {
   return array.sort((a, b) => {
     if (a.firstName > b.firstName) {
@@ -16,6 +17,7 @@ function sortByFirstAndLastName(array) {
   });
 }
 
+// Exports the function
 module.exports = {
   sortByFirstAndLastName
 };

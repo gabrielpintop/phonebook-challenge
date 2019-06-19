@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project name="Create Runnable Jar for Project PhoneBookBack">
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="${dir.buildfile}/.."/>
+    <property name="dir.jarfile" value="${dir.buildfile}/.."/>
+    <property name="lib-dir" value="${dir.jarfile}/lib"/>
+    <path id="classpath">
+        <fileset dir="${lib-dir}" includes="**/*.jar"/>
+    </path>
+   <target name="clean">
+        <delete dir="${dir.jarfile}/bin"/>
+    </target>
+    <target name="compile">
+        <mkdir dir="${dir.jarfile}/bin"/>
+        <javac srcdir="${dir.jarfile}/src" destdir="${dir.jarfile}/bin" classpathref="classpath"/>
+    </target>
+    <target name="jar">
+        <jar destfile="${dir.jarfile}/services-jars/${serviceName}.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="services.${serviceName}"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="${dir.jarfile}/bin"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/ormlite-core-5.1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/ormlite-jdbc-5.1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/mysql-connector-java-5.1.47.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/spark-core-2.9.1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/slf4j-api-1.7.25.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/slf4j-jdk14-1.7.25.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/javax.servlet-api-3.1.0.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/jetty-client-9.4.12.v20180830.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/jetty-http-9.4.12.v20180830.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/jetty-io-9.4.12.v20180830.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/jetty-security-9.4.12.v20180830.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/jetty-server-9.4.12.v20180830.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/jetty-servlet-9.4.12.v20180830.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/jetty-util-9.4.12.v20180830.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/jetty-webapp-9.4.12.v20180830.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/jetty-xml-9.4.12.v20180830.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/websocket-api-9.4.12.v20180830.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/websocket-client-9.4.12.v20180830.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/websocket-common-9.4.12.v20180830.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/websocket-server-9.4.12.v20180830.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/websocket-servlet-9.4.12.v20180830.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/gson-2.6.2.jar"/>
+        </jar>
+    </target>
+</project>

@@ -4,43 +4,64 @@ import contactsApi from '../../api/contacts-api';
 import utilities from '../../global-functions/utilities';
 import './contact-list.css';
 
+// Shows all the existing contacts
 class ContactsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: true,
-      contacts: []
+      contacts: [],
+      message: '',
+      error: false
     };
   }
 
+  // Loads the contacts when the component is mounted
   componentDidMount() {
     this.loadContacts();
   }
 
+  // Used for loading the contacts again when needed
   componentWillReceiveProps(nextProps) {
     if (nextProps.load) {
       this.setState({
         loading: true,
-        contacts: []
+        contacts: [],
+        error: false
       });
       this.loadContacts();
     }
   }
 
+  // Loads all the existing contacts
   loadContacts = () => {
+    this.setState({
+      loading: true,
+      contacts: [],
+      error: false,
+      message: ''
+    });
     contactsApi
       .getContacts()
       .then(data => {
-        // Sort the data by first name and lastName if needed
-        data = utilities.sortByFirstAndLastName(data);
+        let message = '';
+        if (data.length === 0) {
+          message = 'There are no contacts yet. Create one!';
+        } else {
+          // Sort the data by first name and lastName if needed
+          data = utilities.sortByFirstAndLastName(data);
+        }
 
         this.setState({
           contacts: data,
-          loading: false
+          loading: false,
+          message: message
         });
       })
       .catch(err => {
         this.setState({
+          error: true,
+          message: err,
           loading: false
         });
       });
@@ -71,7 +92,20 @@ class ContactsList extends Component {
               </ul>
             </div>
           ) : (
-            <h4>There are no contacts</h4>
+            <div>
+              <h4>{this.state.message}</h4>
+              {this.state.error ? (
+                <button
+                  className="pure-button button-purple"
+                  onClick={this.loadContacts}
+                >
+                  <i className="fas fa-sync" />
+                  Reload
+                </button>
+              ) : (
+                ''
+              )}
+            </div>
           )}
         </div>
       </div>

@@ -7,13 +7,13 @@ import com.j256.ormlite.table.DatabaseTable;
 public class Contact {
 	@DatabaseField(generatedId = true)
 	private int id;
-	
+
 	@DatabaseField
 	private String firstName;
-	
+
 	@DatabaseField
 	private String lastName;
-	
+
 	@DatabaseField(unique = true)
 	private Long phone;
 
@@ -41,7 +41,7 @@ public class Contact {
 		this.lastName = lastName;
 	}
 
-	
+
 	public Long getPhone() {
 		return phone;
 	}
