@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/phonebook-challenge/static/css/main.7d131958.chunk.css",
+    "main.js": "/phonebook-challenge/static/js/main.5e4f8d95.chunk.js",
+    "main.js.map": "/phonebook-challenge/static/js/main.5e4f8d95.chunk.js.map",
+    "runtime~main.js": "/phonebook-challenge/static/js/runtime~main.2a451900.js",
+    "runtime~main.js.map": "/phonebook-challenge/static/js/runtime~main.2a451900.js.map",
+    "static/css/2.cbcd6f8b.chunk.css": "/phonebook-challenge/static/css/2.cbcd6f8b.chunk.css",
+    "static/js/2.abcb972b.chunk.js": "/phonebook-challenge/static/js/2.abcb972b.chunk.js",
+    "static/js/2.abcb972b.chunk.js.map": "/phonebook-challenge/static/js/2.abcb972b.chunk.js.map",
+    "index.html": "/phonebook-challenge/index.html",
+    "precache-manifest.8d1644ff5326b390254c05b202746347.js": "/phonebook-challenge/precache-manifest.8d1644ff5326b390254c05b202746347.js",
+    "service-worker.js": "/phonebook-challenge/service-worker.js",
+    "static/css/2.cbcd6f8b.chunk.css.map": "/phonebook-challenge/static/css/2.cbcd6f8b.chunk.css.map",
+    "static/css/main.7d131958.chunk.css.map": "/phonebook-challenge/static/css/main.7d131958.chunk.css.map",
+    "static/media/app.css": "/phonebook-challenge/static/media/background.82663453.jpg"
+  }
+}
