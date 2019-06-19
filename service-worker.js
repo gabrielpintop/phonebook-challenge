@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/phonebook-challenge/precache-manifest.8d1644ff5326b390254c05b202746347.js"
+  "/phonebook-challenge/precache-manifest.cfddf0ababe1cbfb8d6308b76e36b518.js"
 );
 
 self.addEventListener('message', (event) => {
